@@ -10,6 +10,8 @@ web post video hướng dẫn adobe PTS, Pr, Ae
 	     + controllers: chứa các file controller 
 	     + models: chứa các file model
 	     + views: chứa các file view
+4. URL để chạy có thay đổi: 
+   - Không dùng /index.php/ nữa: http://localhost/MVC/adotricks/index.php/video đổi thành http://localhost/MVC/adotricks/video
 
 Chạy sql/test.sql và tham khảo modules/test để hiểu thêm 
 	 
