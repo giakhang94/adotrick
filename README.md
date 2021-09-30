@@ -10,4 +10,6 @@ web post video hướng dẫn adobe PTS, Pr, Ae
 	     + controllers: chứa các file controller 
 	     + models: chứa các file model
 	     + views: chứa các file view
+
+Chạy sql/test.sql và tham khảo modules/test để hiểu thêm 
 	 
