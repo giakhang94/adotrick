@@ -1,0 +1,14 @@
+Header set Strict-Transport-Security "max-age=31536000"
+
+<IfModule mod_rewrite.c>
+RewriteEngine On
+
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?/$1 [L]
+
+RewriteCond $1 !^(index\.php|pMA|\.well-known|favicon\.ico|sitemap\.xml|hooks|html|assets|js|css|images|img|captcha|plugin|.+\.csv$|.+\.css$|.+\.gif$|.+\.jpg$|.+\.png$|.+\.js$|.+\.woff$|.+\.woff2$|.+\.ttf$|.+\.svg$)
+RewriteRule ^(.*)$ index.php?/$1 [L]
+
+
+</IfModule>
