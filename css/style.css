@@ -1,0 +1,170 @@
+/*.main-nav .container-nav .main-link {
+	margin-right:  0px;
+	right: 0px;
+	position: absolute;
+}*/
+/* đưa phần <ul> me nu vô khung của container; ở phía bên phải */
+.container-nav {
+	position: relative;
+}
+.main-nav .container-nav .main-link .main-ul {
+	margin-right:  0px;
+	right: 0px;
+	position: absolute;
+}
+/*đổi màu cho main-nav*/
+#main-nav{
+	background-color: #05424d;
+}
+.main-nav .main-ul .nav-link {
+	margin-right:  25px;
+	margin-left:  25px;
+}
+.tutorial-videos .slogan-tutorial {
+	/*margin-top:  50px;*/
+	margin-bottom: 30px;
+}
+.tutorial-videos .slogan-tutorial1 {
+	margin-top:  30px;
+	margin-bottom: 30px;
+}
+.card .thumb .video-time {
+	position: absolute;
+	background-color: #05424d	;
+	text-decoration: bold;
+	top:  90%;
+	right: 0%;
+	color:  white;
+	padding-right: 5px;
+	padding-left:  5px;
+}
+.card .thumb {
+	position: relative;
+}
+.load-more {
+	text-align: center;
+	margin-top:  30px;
+	margin-bottom:  0px;
+}
+.carousel-top .carousel-inner .carousel-item img {
+	width:  100%;
+	max-height: 600px;
+}
+.load-more .load-more-text {
+	background-color: #05424d;
+	border-color: #05424d;
+}
+.form-info {
+	text-align: center;
+	margin-top: 30px;
+}
+.text-getinfo {
+	padding-top: 10px;
+}
+.color-form {
+	background-color: #EFEFEF;
+}
+.youtube {
+	text-decoration: bold;
+	color:  white;
+	font-size: 15px;
+	background-color: red;
+}
+.form-info .form .submit_button {
+	background-color: #05424d;
+	border-color: #05424d;
+}
+.color-form .form-info {
+	padding-bottom:  30px;
+}
+/*css cho footer */
+ul.social-network {
+  list-style: none;
+  display: inline;
+  margin-left: 0 !important;
+  padding: 0;
+}
+
+ul.social-network li {
+  display: inline;
+  margin: 0 5px;
+}
+
+
+/* footer social icons */
+
+.social-network a.icoFacebook:hover {
+  background-color: #3B5998;
+}
+
+.social-network a.icoLinkedin:hover {
+  background-color: red;
+}
+
+.social-network a.icoFacebook:hover i,
+.social-network a.icoLinkedin:hover i {
+  color: #fff;
+}
+
+.social-network a.socialIcon:hover,
+.socialHoverClass {
+  color: #44BCDD;
+}
+
+.social-circle li a {
+  display: inline-block;
+  position: relative;
+  margin: 0 auto 0 auto;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  border-radius: 50%;
+  text-align: center;
+  width: 30px;
+  height: 30px;
+  font-size: 15px;
+}
+
+.social-circle li i {
+  margin: 0;
+  line-height: 30px;
+  text-align: center;
+}
+
+.social-circle li a:hover i,
+.triggeredHover {
+  -moz-transform: rotate(360deg);
+  -webkit-transform: rotate(360deg);
+  -ms--transform: rotate(360deg);
+  transform: rotate(360deg);
+  -webkit-transition: all 0.2s;
+  -moz-transition: all 0.2s;
+  -o-transition: all 0.2s;
+  -ms-transition: all 0.2s;
+  transition: all 0.2s;
+}
+
+.social-circle i {
+  color: #595959;
+  -webkit-transition: all 0.8s;
+  -moz-transition: all 0.8s;
+  -o-transition: all 0.8s;
+  -ms-transition: all 0.8s;
+  transition: all 0.8s;
+}
+
+.social-network a {
+  background-color: #F9F9F9;
+}
+
+.footer {
+	text-align: center;
+	padding-bottom: 20px;
+	background-color: #05424d;
+	padding-top:  10px;
+}
+.footer p {
+	color:  white;
+}
+.footer .follow-us, .youtube-footer {
+	font-size: 15px;
+}
