@@ -168,3 +168,28 @@ ul.social-network li {
 .footer .follow-us, .youtube-footer {
 	font-size: 15px;
 }
+.addVideo span {
+	min-width: 110px;
+}
+.addVideo .label-dropdown{
+	min-width: 110px;
+}
+.addVideo {
+	padding-right: 30px;
+	padding-left:  30px;
+}
+.main-card .form_header {
+	background-color: #05424d;
+}
+.main-card .form_header .form_title {
+	color:  white;
+}
+.addVideo .nut_submit, .nut_reset {
+	background-color: #05424d;
+	border-color: #05424d;
+}
+.addVideo .btn-info:hover {
+    color: #fff;
+    background-color: #138496;
+    border-color: #117a8b;
+}
