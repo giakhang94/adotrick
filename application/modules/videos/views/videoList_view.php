@@ -1,3 +1,4 @@
+
 <?php $this->load->helper('url');?>
 <!DOCTYPE html>
 <html lang="en">
@@ -12,26 +13,62 @@
 		<link rel="stylesheet" href="<?=base_url()?>css/style.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="shortcut icon" href="<?=base_url()?>img/round-title.ico" />
+		<script src='https://kit.fontawesome.com/a076d05399.js' crossorigin='anonymous'></script>
 	</head>
 	<body>
 		<div class="container">
 			<h2 class='title_listvideo'>Danh sách Video</h2>
-			<div class="card-deck">
+			<div class="row row-eq-height">
 				<?php foreach ($data_video as $key => $value) : ?>
-				<div class="card">
-					<div class="thumb">
-						<img class="card-img-top" src="<?php echo base_url()."uploads/".$value['thumb'];?>">
-						<span class = "video-time"><?=$value['time'];?></span>
+					<div class="col-md-3 d-flex">
+						<div class="card-deck list-video">
+							<div class="card video">
+								<div class="thumb">
+									<img class="card-img-top" src="<?php echo base_url()?>uploads/<?=$value['thumb'];?>">
+									<span class = "video-time"><?=$value['time'];?></span>
+									<div class="nut">
+										<a href="<?php echo base_url();?>videos/insertVideo/<?=$value['id']?>" class="btn btn-info sua_video"><i class='fas fa-pen' ></i></a>
+										<a href="<?php echo base_url();?>videos/deleteVideo/<?=$value['id']?>" class="btn btn-info xoa_video"><i class='fas fa-window-close' ></i></a>
+									</div>
+
+								</div>
+								<div class="card-body">
+								<h4 class="card-title"><?=$value['title'];?> </h4>
+								<p class="card-text"><?=$value['description'];?></p>
+								<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+								</div>
+							</div>
+						</div>
+
 					</div>
-					<div class="card-body">
-						<h4 class="card-title"><?=$value['title'];?> </h4>
-						<p class="card-text"><?=$value['description'];?></p>
-						<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
-					</div>
-				</div>
-				<?php endforeach?>
+				<?php endforeach ?>
 			</div>
 		</div>
+		<div class="pagination-videolist">
+				<nav aria-label="Page navigation example">
+					<ul class="pagination justify-content-center">
+						<li class="page-item">
+							<a style ="margin-right:10px"class="page-link" href="#" aria-label="Previous">
+								<span aria-hidden="true">&laquo;</span>
+								<span class="sr-only">Previous</span>
+							</a>
+						</li>
+						<?php for ($i=0; $i <$pagi['pages'] ; $i++):?>
+						<li class="page-item  
+						<?php if($i+1 == $pagi['active-page']) {
+							echo "active";
+						}?>"
+							style="margin-right: 10px"><a class="page-link"href="<?php echo base_url() ?>videos/listVideo/<?php echo $i+1?>"><?php echo $i+1?></a></li>
+					    <?php endfor ?>
+						<li class="page-item">
+							<a href="#" class="page-link" aria-label="Previous">
+								<span aria-hidden="true">&raquo;</span>
+								<span class="sr-only">Previous</span>
+							</a>
+						</li>
+					</ul>
+				</nav>
+			</div>
 
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->

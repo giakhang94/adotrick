@@ -1,6 +1,6 @@
 <?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
-class Videos extends CI_Controller {
+class Welcome2 extends CI_Controller {
 
 	public function __construct()
 	{
@@ -39,8 +39,6 @@ class Videos extends CI_Controller {
 	}
 	public function insertVideo($id = 0){
 		if(!$this->input->post()){
-			$this->load->model('video_model');
-			$cat = $this->video_model->getCategory();
 			if($id == 0) {
 				$data_video_value = array (
 					'id'=>0,
@@ -62,7 +60,7 @@ class Videos extends CI_Controller {
 
 			}
 
-			$data = array ('video_value'=>$data_video_value, 'category'=>$cat);
+			$data = array ('video_value'=>$data_video_value);
 			$this->load->view('addvideo_view', $data, FALSE);
 		}else {
 			if($id == 0){

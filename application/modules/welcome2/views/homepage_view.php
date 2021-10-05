@@ -20,12 +20,12 @@
 		<!-- include carousel -->
 		<?php include "./includes/carousel.php"?>
 		<!-- xong carousel -->
-		<div class="container top-video row">
+		<div class="container top-video">
 			<div class="tutorial-videos">
 				<h3 class="slogan-tutorial1">Latest Tutorial Videos</h3>
 			</div>
 			<div class="card-deck">
-				<div class="card col-md-4">
+				<div class="card">
 					<div class="thumb">
 						<img class="card-img-top" src="https://scontent.fsgn8-1.fna.fbcdn.net/v/t1.6435-9/242623157_4398313443596889_1931248207230593035_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=730e14&_nc_ohc=JUk-rhUklJQAX9QOpFe&_nc_ht=scontent.fsgn8-1.fna&oh=2866a7eb3e72fa005fe4e7bc0be19dc0&oe=617822A9">
 						<span class = "video-time">05:25</span>
@@ -36,7 +36,7 @@
 						<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 					</div>
 				</div>
-				<div class="card col-md-4">
+				<div class="card">
 					<div class="thumb">
 						<img class="card-img-top" src="https://scontent.fsgn13-2.fna.fbcdn.net/v/t1.6435-9/124611783_3487211044707138_4718925414650380006_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=730e14&_nc_ohc=9myGsQstb4EAX-IJsRQ&tn=EiOdfapu3fYgJWlt&_nc_ht=scontent.fsgn13-2.fna&oh=dc8220184819ef3f6831b4a8a198ada4&oe=617B2A17">
 						<span class = "video-time">05:25</span>
@@ -47,7 +47,7 @@
 						<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 					</div>
 				</div>
-				<div class="card col-md-4">
+				<div class="card">
 					<div class="thumb">
 						<img class="card-img-top" src="https://scontent.fsgn8-1.fna.fbcdn.net/v/t1.6435-9/242623157_4398313443596889_1931248207230593035_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=730e14&_nc_ohc=JUk-rhUklJQAX9QOpFe&_nc_ht=scontent.fsgn8-1.fna&oh=2866a7eb3e72fa005fe4e7bc0be19dc0&oe=617822A9">
 						<span class = "video-time">05:25</span>
@@ -65,12 +65,12 @@
 		</div>
 		<!-- tới làm cái blog ở giữa 2 cái list video -->
 		<!-- xong cái blog  -->
-		<div class="container top-video row">
+		<div class="container top-video">
 			<div class="tutorial-videos">
 				<h3 class="slogan-tutorial">Adobe Trick Videos</h3>
 			</div>
 			<div class="card-deck">
-				<div class="card col-md-4">
+				<div class="card">
 					<div class="thumb">
 						<img class="card-img-top" src="https://scontent.fsgn8-1.fna.fbcdn.net/v/t1.6435-9/242623157_4398313443596889_1931248207230593035_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=730e14&_nc_ohc=JUk-rhUklJQAX9QOpFe&_nc_ht=scontent.fsgn8-1.fna&oh=2866a7eb3e72fa005fe4e7bc0be19dc0&oe=617822A9">
 						<span class = "video-time">05:25</span>
@@ -81,7 +81,7 @@
 						<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 					</div>
 				</div>
-				<div class="card col-md-4">
+				<div class="card">
 					<div class="thumb">
 						<img class="card-img-top" src="https://scontent.fsgn13-2.fna.fbcdn.net/v/t1.6435-9/124611783_3487211044707138_4718925414650380006_n.jpg?_nc_cat=108&ccb=1-5&_nc_sid=730e14&_nc_ohc=9myGsQstb4EAX-IJsRQ&tn=EiOdfapu3fYgJWlt&_nc_ht=scontent.fsgn13-2.fna&oh=dc8220184819ef3f6831b4a8a198ada4&oe=617B2A17">
 						<span class = "video-time">05:25</span>
@@ -92,7 +92,7 @@
 						<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 					</div>
 				</div>
-				<div class="card col-md-4">
+				<div class="card">
 					<div class="thumb">
 						<img class="card-img-top" src="https://scontent.fsgn8-1.fna.fbcdn.net/v/t1.6435-9/242623157_4398313443596889_1931248207230593035_n.jpg?_nc_cat=111&ccb=1-5&_nc_sid=730e14&_nc_ohc=JUk-rhUklJQAX9QOpFe&_nc_ht=scontent.fsgn8-1.fna&oh=2866a7eb3e72fa005fe4e7bc0be19dc0&oe=617822A9">
 						<span class = "video-time">05:25</span>

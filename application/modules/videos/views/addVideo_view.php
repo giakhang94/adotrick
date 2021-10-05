@@ -38,11 +38,9 @@ $this->load->helper('form');
 						</div>
 						<select class="custom-select" id="category" name = "category">
 						    <option>Chọn 1 category</option>
-						    <option <?php echo $value['category']=="After Effects"?"selected":"";?> value="After Effects">After Effects</option>
-						    <option <?php echo $value['category']=="Premiere"? "selected":"";?> value="Premiere">Premiere</option>
-						    <option <?php echo $value['category']=="Photoshop"? "selected":"";?> value="Photoshop">Photoshop</option>
-						    <option <?php echo $value['category']=="Macro Photography"? "selected":"";?> value="Macro Photography">Macro Photography</option>
-						    <option <?php echo $value['category']=="Timelapse photography"? "selected":"";?> value="Timelapse photography">Timelapse photography</option>
+						    <?php foreach ($category as $key => $value2) :?>
+						    <option <?php echo $value['category']== $value2['cat_name']?"selected":"";?> value="<?php echo $value2['cat_name'];?>"><?php echo $value2['cat_name'];?></option>
+						<?php endforeach ?>
 					  	</select>
 					</div>			
 					<div class="input-group mb-3">
@@ -67,19 +65,19 @@ $this->load->helper('form');
   						<div class="input-group-prepend">
    							 <span class="input-group-text" id="basic-addon1">time</span>
   						</div>
-  						<input <?php echo set_value('time',$value['time']);?> name ="time" type="text" class="form-control" placeholder="độ dài video (lấy đúng theo youtube)" aria-label="time" aria-describedby="basic-addon1">
+  						<input value="<?php echo set_value('time',$value['time']);?>" name ="time" type="text" class="form-control" placeholder="độ dài video (lấy đúng theo youtube)" aria-label="time" aria-describedby="basic-addon1">
 					</div>
 					<div class="input-group mb-3">
   						<div class="input-group-prepend">
-   							 <span class="input-group-text" id="basic-addon1">descriiption</span>
+   							 <span class="input-group-text" id="basic-addon1">description</span>
   						</div>
-  						<input <?php echo set_value('description',$value['description']);?> name ="descriiption"type="text" class="form-control" placeholder="mô tả ngắn (gần bằng các video khác)" aria-label="descriiption" aria-describedby="basic-addon1">
+  						<input value="<?php echo set_value('description',$value['description']);?>" name ="description"type="text" class="form-control" placeholder="mô tả ngắn (gần bằng các video khác)" aria-label="description" aria-describedby="basic-addon1">
 					</div>					
 					<div class="input-group mb-3">
   						<div class="input-group-prepend">
    							 <span class="input-group-text" id="basic-addon1">comment</span>
   						</div>
-  						<input <?php echo set_value('comment',$value['comment']);?> name ="comment"type="number" class="form-control" placeholder="nhập 0 giùm em" aria-label="comment" aria-describedby="basic-addon1">
+  						<input value="<?php echo set_value('comment',$value['comment']);?>" name ="comment"type="number" class="form-control" placeholder="nhập 0 giùm em" aria-label="comment" aria-describedby="basic-addon1">
 					</div>							
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
@@ -90,7 +88,7 @@ $this->load->helper('form');
 						    <label class="custom-file-label" for="inputGroupFile01">Upload thumbnail cho video</label>
 						</div>
 					<div class="input-group mb-3">
-	  						<input <?php echo $value['thumb'];?> name ="thumb_old"type="text" class="form-control hidden" hidden="hidden" placeholder="nhập 0 giùm em" aria-label="comment" aria-describedby="basic-addon1">
+	  						<input value="<?php echo $value['thumb'];?>" name ="thumb_old"type="text" class="form-control hidden" hidden="hidden" placeholder="nhập 0 giùm em" aria-label="comment" aria-describedby="basic-addon1">
 					</div>	
 					</div>
 					<button type="sumbit" class="btn btn-info nut_submit">Thêm vào Database</button>

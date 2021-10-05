@@ -32,5 +32,5 @@ user_guide_src/cilexer/pycilexer.egg-info/*
 
 uploads/
 upload_temp/
-config/
-libraries/
+application/config/
+application/libraries/
