@@ -39,7 +39,7 @@ $this->load->helper('form');
 						<select class="custom-select" id="category" name = "category">
 						    <option>Chọn 1 category</option>
 						    <?php foreach ($category as $key => $value2) :?>
-						    <option <?php echo $value['category']== $value2['cat_name']?"selected":"";?> value="<?php echo $value2['cat_name'];?>"><?php echo $value2['cat_name'];?></option>
+						    <option <?php echo $value['category']== $value2['cat_name']?"selected":"";?> value="<?php echo $value2['id'];?>"><?php echo $value2['cat_name'];?></option>
 						<?php endforeach ?>
 					  	</select>
 					</div>			

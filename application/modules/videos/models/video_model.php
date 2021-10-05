@@ -20,7 +20,7 @@ class Video_model extends CI_Model {
 			'time'=>$time,
 			'comment'=>$comment,
 			'type'=>$type,
-			'category'=>$category,
+			'category_id'=>$category,
 			'link'=>$link,
 			'thumb'=>$thumb
 		);
@@ -44,7 +44,7 @@ class Video_model extends CI_Model {
 			'time'=>$time,
 			'comment'=>$comment,
 			'type'=>$type,
-			'category'=>$category,
+			'category_id'=>$category,
 			'link'=>$link,
 			'thumb'=>$thumb
 		);
