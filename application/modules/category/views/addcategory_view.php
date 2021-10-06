@@ -31,39 +31,29 @@ $this->load->helper('form');
    							 <span class="input-group-text" id="basic-addon1">Cat_name</span>
   						</div>
   						<input  name ="cat_name"  value = "<?php echo set_value('cat_name',$value['cat_name'])?>"type="text" class="form-control" placeholder="tên chuyên mục" aria-label="cat_name" aria-describedby="basic-addon1">
-					</div>
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-						    <label class="input-group-text label-dropdown" for="inputGroupSelect01">delete_flag</label>
+					</div>	
+					<div class="input-group mb-3" data-toggle="buttons">
+						<div class="input-group-prepend radio-cat">
+						    <label class="input-group-text label-dropdown" for="inputGroupSelect01">Delete?</label>
 						</div>
-						<select class="custom-select" id="delete_flag" name = "delete_flag">
-						    <option>Chọn 1 (xoá) hoặc 0 (để)</option>
-						    <option <?php echo $value['delete_flag']=="1"?"selected":"";?> value="1">1 (delete)</option>
-						    <option <?php echo $value['delete_flag']=="0"?"selected":"";?> value="0">0 (để xài)</option>
-					  	</select>
-					</div>				
-					<div class="input-group mb-3">
-						<div class="input-group-prepend">
-						    <label class="input-group-text label-dropdown" for="inputGroupSelect01">public_flag</label>
+						<label class="btn btn-secondary">
+							<input value="1" type="radio" name="delete_flag" id="option2" autocomplete="off">YES
+						</label>
+						<label class="btn btn-secondary">
+							<input value="0" type="radio" name="delete_flag" id="option3" checked autocomplete="off">NO
+						</label>
+					</div>					
+					<div class="input-group mb-3" data-toggle="buttons">
+						<div class="input-group-prepend radio-cat">
+						    <label class="input-group-text label-dropdown" for="inputGroupSelect01">Public?</label>
 						</div>
-						<select class="custom-select" id="public_flag" name = "public_flag">
-						    <option>Chọn 1 (xoá) hoặc 0 (để)</option>
-						    <option <?php echo $value['public_flag']=="1"?"selected":"";?> value="1">1 (delete)</option>
-						    <option <?php echo $value['public_flag']=="0"?"selected":"";?> value="0">0 (để xài)</option>
-					  	</select>
-					</div>
-					<div class="input-group mb-3">
-  						<div class="input-group-prepend">
-   							 <span class="input-group-text" id="basic-addon1">create date</span>
-  						</div>
-  						<input value = "<?php echo set_value('create_date',$value['create_date']);?>" name ="create_date"type="text" class="form-control" placeholder="Ngày tạo category này nè đmm" aria-label="create_date" aria-describedby="basic-addon1">
-					</div>
-					<div class="input-group mb-3">
-  						<div class="input-group-prepend">
-   							 <span class="input-group-text" id="basic-addon1">update_date</span>
-  						</div>
-  						<input value="<?php echo set_value('update_date',$value['update_date']);?>" name ="update_date" type="text" class="form-control" placeholder="Thời gian thay đổi category này nè, this nè" aria-label="update_date" aria-describedby="basic-addon1">
-					</div>							
+						<label class="btn btn-secondary">
+							<input value="1" type="radio" name="public_flag" id="option2" autocomplete="off">YES
+						</label>
+						<label class="btn btn-secondary">
+							<input value="0" type="radio" name="public_flag" id="option3" checked autocomplete="off">NO
+						</label>
+					</div>					
 					<div class="input-group mb-3">
 						<div class="input-group-prepend">
 							<span class="input-group-text">Upload</span>

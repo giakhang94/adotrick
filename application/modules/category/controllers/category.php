@@ -13,8 +13,6 @@ class Category extends CI_Controller {
 	}
 	public function addCategory($id = 0){
 		if(!$this->input->post()){
-			$this->load->model('category_model');
-			$cat = $this->category_model->getCategory();
 			if($id == 0) {
 				$data_video_value = array (
 					'id'=>0,
@@ -41,8 +39,7 @@ class Category extends CI_Controller {
 				$cat_name = $this->input->post('cat_name');
 				$public_flag = $this->input->post('public_flag');
 				$delete_flag = $this->input->post('delete_flag');
-				$create_date = $this->input->post('create_date');
-				$update_date = $this->input->post('update_date');
+				$create_date = date("Y/m/d");
 				//làm cái upload thumbnail
 				$config['upload_path'] = './uploads_temp/';
 				$config['allowed_types'] = 'gif|jpg|png';
@@ -90,8 +87,7 @@ class Category extends CI_Controller {
 				$cat_name = $this->input->post('cat_name');
 				$public_flag = $this->input->post('public_flag');
 				$delete_flag = $this->input->post('delete_flag');
-				$create_date = $this->input->post('create_date');
-				$update_date = $this->input->post('update_date');
+				$update_date = date("Y/m/d");
 				//làm cái upload thumbnail
 				$config['upload_path'] = './uploads_temp/';
 				$config['allowed_types'] = 'gif|jpg|png';
@@ -101,13 +97,16 @@ class Category extends CI_Controller {
 				$config['file_name'] = strval(time());
 				$thumb = $config['file_name'];
 				$target_folder = "./uploads/";
+				$this->load->model('category_model');
+				$cat_by_id = $this->category_model->getCatById($id);
+				$create_date = $cat_by_id[0]['create_date'];
 				$this->load->library('upload', $config);
 				
 				if ( ! $this->upload->do_upload("cat_thumb")){
 					$error = array('error' => $this->upload->display_errors());
-					$thumb_old = $this->input->post('thumb_old');
+					$thumb_old = $this->input->post('cat_thumb_old');
 					$this->load->model('category_model');
-					if($this->category_model->updateCategory($id, $cat_name, $thumb, $public_flag, $delete_flag, $create_date, $update_date))
+					if($this->category_model->updateCategory($id, $cat_name, $thumb_old, $public_flag, $delete_flag, $create_date, $update_date))
 					{
 						header("Location: ".base_url()."category/listCategory");
 

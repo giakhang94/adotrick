@@ -64,8 +64,11 @@ class Category_model extends CI_Model {
 	}
 	public function getCategory()
 	{
+		$limit = 2;
+		$offset = 0; //lấy ra 2 phần tử, từ vị trí 0; tạm thời để vậy sẽ xử lý tiếp
 		$this->db->select('*');
-		$res = $this->db->get('video_categories');
+		$this->db->where('delete_flag', '0');
+		$res = $this->db->get('video_categories', $limit, $offset);
 		$res = $res->result_array();
 		return $res;
 	}

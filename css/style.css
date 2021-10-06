@@ -242,3 +242,7 @@ ul.social-network li {
 .pagination-videolist {
 	text-align: center;
 }
+/*//xong pagination*/
+.main-card .addVideo .radio-cat {
+	height: fit-content;
+}
