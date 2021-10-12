@@ -41,7 +41,7 @@
 					<tbody>
 						<?php foreach ($data_cat as $key => $value) :?>
 						<tr>
-							<td><a class="btn btn-info" href="<?php echo base_url()?>admin/category/addCategory/<?php echo $value['id']; ?>">Sửa</a></td>
+							<td><a class="btn btn-info" href="<?php echo base_url()?>category/addCategory/<?php echo $value['id']; ?>">Sửa</a></td>
 							<td>#</td>
 							<td><?php echo $value['cat_name'] ?></td>
 							<td><?php echo $value['cat_thumb'] ?></td>

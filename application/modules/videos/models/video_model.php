@@ -10,24 +10,6 @@ class Video_model extends CI_Model {
 		$this->load->helper('url');
 		
 	}
-	public function insertVideo_model($title, $des, $time, $comment, $type, $category, $link, $thumb)
-	{
-		$this->load->helper('url');
-		$this->load->helper('form');
-		$object = array (
-			'title'=>$title,
-			'description'=>$des,
-			'time'=>$time,
-			'comment'=>$comment,
-			'type'=>$type,
-			'category_id'=>$category,
-			'link'=>$link,
-			'thumb'=>$thumb
-		);
-		$this->db->select('*');
-		$this->db->insert('video', $object);
-		return $this->db->insert_id();
-	}
 	public function getVideoById($id)
 	{
 		// $this->db->select('*');
@@ -36,35 +18,7 @@ class Video_model extends CI_Model {
 		$res = $res->result_array();
 		return $res;
 	}
-	public function updateVideo($id,$title, $des, $time, $comment, $type, $category, $link, $thumb)
-	{
-		$object = array (
-			'title'=>$title,
-			'description'=>$des,
-			'time'=>$time,
-			'comment'=>$comment,
-			'type'=>$type,
-			'category_id'=>$category,
-			'link'=>$link,
-			'thumb'=>$thumb
-		);
-		$this->db->select('*');
-		$this->db->where('id', $id);
-		return $this->db->update('video', $object);
-	}
-	public function updateThumbName($id, $new_name, $old_path, $new_path,$target)
-	{
-		rename($old_path, $new_path);
-		$object = array ('thumb'=>$new_name);
-		$this->db->select('*');
-		$this->db->where('id', $id);
-		$res = $this->db->update('video', $object);
-		if($res){
-			copy($new_path, $target);
-			unlink($new_path);
-		}
-		return $res;
-	}
+
 	public function getVideo()
 	{
 		$this->db->select('*');
