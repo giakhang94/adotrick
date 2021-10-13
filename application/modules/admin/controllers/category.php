@@ -144,6 +144,22 @@ class Category extends CI_Controller {
 			}
 		}
 	}
+	public function listCategory($page=0) //tiến hành đổ data ra page theo số trang trên pagination
+	{
+		$this->load->model('category_model');
+		$data = $this->category_model->getCategory($page);
+		for ($i=0; $i < count($data) ; $i++) { 
+			
+			$id_temp = $this->category_model->getVideoByCat($data[$i]['cat_name']);
+			$id[strval($data[$i]['id'])] = $id_temp;
+		}
+		//lấy ra tổng số trang
+		$page_number = $this->category_model->getPageNumber();
+		//truyền tổng số trang ra view để dùng for tạo pagination
+		$data = array ('data_cat'=>$data,'page'=>$page_number,'video_id', 'cate'=>$id);
+
+		$this->load->view('category/listCategory_view', $data, FALSE);
+	}
 
 }
 

@@ -30,38 +30,29 @@
 						<tr>
 							<th>#</th>
 							<th>#</th>
-							<th>cat_name</th>
-							<th>cat_thumb</th>
-							<th>video in this cate</th>
-							<th>public_flag</th>
-							<th>delete_flag</th>
-							<th>create_date</th>
-							<th>update_date</th>
+							<th>Title</th>
+							<th>Thumb url</th>
+							<th>Cate_id</th>
+							<th>Description</th>
+							<th>Category</th>
+							<th>Type</th>
+							<th>time</th>
+							<th>comment</th>
 						</tr>
 					</thead>
 					<tbody>
-						<?php foreach ($data_cat as $key => $value) : $id_use = $value['id'];?>
+						<?php foreach ($data_video as $key => $value) :?>
 						<tr>
-							<td><a class="btn btn-info" href="<?php echo base_url()?>admin/category/addCategory/<?php echo $value['id']; ?>">Sửa</a></td>
+							<td><a class="btn btn-info" href="<?php echo base_url()?>admin/videos/insertVideo/<?php echo $value['id']; ?>">Sửa</a></td>
 							<td>#</td>
-							<td><?php echo $value['cat_name'] ?></td>
-							<td><?php echo $value['cat_thumb'] ?></td>
-							
-							<td>
-							<?php $cate2 = array ('cate_id'=>$cate[$id_use]); ?>
-							<?php foreach ($cate2 as $key2 => $value2):
-							?>
-							<?php
-								foreach ($value2 as $key3 => $value3): 
-									echo $value3['title']; echo "; "; 
-								endforeach;
-							?>
-							<?php endforeach ?>
-							</td>
-							<td><?php echo $value['public_flag'] ?></td>
-							<td><?php echo $value['delete_flag'] ?></td>
-							<td><?php echo $value['create_date'] ?></td>
-							<td><?php echo $value['update_date'];?></td>
+							<td><?php echo $value['title'] ?></td>
+							<td><?php echo $value['thumb'] ?></td>
+							<td><?php echo $value['category_id'] ?></td>
+							<td><?php echo $value['description'] ?></td>
+							<td><?php echo $value['category_id'] ?></td>
+							<td><?php echo $value['type'] ?></td>
+							<td><?php echo $value['time'] ?></td>
+							<td><?php echo $value['comment'];?></td>
 						</tr>
 						<?php endforeach ?>
 						</tr>
@@ -75,7 +66,7 @@
 				<li><a href="#">&laquo;</a></li>
 				<?php for ($i=0; $i <$page ; $i++):
 				?>
-				<li><a href="<?php echo base_url()?>admin/category/listCategory/<?php echo $i+1?>"><?=$i+1?></a></li>
+				<li><a href="<?php echo base_url()?>admin/videos/listVideo_admin/<?php echo $i+1?>"><?=$i+1?></a></li>
 				<?php  endfor?>
 				<li><a href="#">&raquo;</a></li>
 			</ul>

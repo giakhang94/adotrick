@@ -19,24 +19,22 @@
 		<div class="container">
 			<h2 class='title_listvideo'>Danh sách Video</h2>
 			<div class="row row-eq-height">
-				<?php foreach ($data_video as $key => $value) : ?>
+				<?php foreach ($data_cat as $key => $value) : ?>
 					<div class="col-md-3 d-flex">
 						<div class="card-deck list-video">
 							<div class="card video">
 								<div class="thumb">
-									<img class="card-img-top" src="<?php echo base_url()?>uploads/<?=$value['thumb'];?>">
-									<span class = "video-time"><?=$value['time'];?></span>
+									<img class="card-img-top" src="<?php echo base_url()?>uploads/<?=$value['cat_thumb'];?>">
+									<span class = "video-time"><?=$value['create_date'];?></span>
 									<div class="nut">
-										<a href="<?php echo base_url();?>admin/videos/insertVideo/<?=$value['id']?>" class="btn btn-info sua_video"><i class='fas fa-pen' ></i></a>
+										<a href="<?php echo base_url();?>admin/category/addCategory/<?=$value['id']?>" class="btn btn-info sua_video"><i class='fas fa-pen' ></i></a>
 										<a href="<?php echo base_url();?>videos/deleteVideo/<?=$value['id']?>" class="btn btn-info xoa_video"><i class='fas fa-window-close' ></i></a>
 									</div>
 
 								</div>
 								<div class="card-body">
-								<h4 class="card-title"><?=$value['title'];?> </h4>
-								<p class="card-text"><?=$value['description'];?></p>
-								<p class="card-text">Cate_id: <?=$value['category_id'];?></p>
-								<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+								<h4 class="card-title"><?=$value['cat_name'];?> </h4>
+								<p class="card-text"><small class="text-muted">Last updated <?php echo $value['update_date'];?></small></p>
 								</div>
 							</div>
 						</div>
@@ -59,7 +57,7 @@
 						<?php if($i+1 == $pagi['active-page']) {
 							echo "active";
 						}?>"
-							style="margin-right: 10px"><a class="page-link"href="<?php echo base_url() ?>videos/listVideo/<?php echo $i+1?>"><?php echo $i+1?></a></li>
+							style="margin-right: 10px"><a class="page-link"href="<?php echo base_url() ?>category/listCategory/<?php echo $i+1?>"><?php echo $i+1?></a></li>
 					    <?php endfor ?>
 						<li class="page-item">
 							<a href="#" class="page-link" aria-label="Previous">

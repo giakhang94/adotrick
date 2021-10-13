@@ -18,9 +18,11 @@ class Category extends CI_Controller {
 		$data = $this->category_model->getCategory($page);
 		//lấy ra tổng số trang
 		$page_number = $this->category_model->getPageNumber();
+		$pagi['pages'] = $page_number;
+		$pagi['active-page'] = $page;
 		//truyền tổng số trang ra view để dùng for tạo pagination
-		$data = array ('data_cat'=>$data,'page'=>$page_number);
-		$this->load->view('listCategory_view', $data, FALSE);
+		$data = array ('data_cat'=>$data,'pagi'=>$pagi);
+		$this->load->view('listCategory_userside', $data, FALSE);
 	}
 
 }

@@ -74,7 +74,28 @@ class Video_model extends CI_Model {
 		}
 		return $res;
 	}
-
+	public function getPageNumber_admin()
+	{
+		$limit = 2;//sau này sẽ xử lý bỏ input vào trước thầy phế
+		$this->db->select('*');
+		$res = $this->db->get('video');
+		$res = $res->result_array();
+		$total_rows = count($res);
+		$page_number = ceil($total_rows/$limit);
+		return $page_number;
+	}
+	public function getPagePagi_admin($page)
+	{
+		$limit = 2;
+		if ($page == 0){
+			$page = 1;
+		}
+		$offset = ($page - 1)*$limit;
+		$this->db->select('*');
+		$res = $this->db->get('video', $limit, $offset);
+		$res = $res->result_array();;
+		return $res;
+	}
 }
 
 /* End of file video_model.php */
