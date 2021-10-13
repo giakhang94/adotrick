@@ -65,6 +65,7 @@ class Category extends CI_Controller {
 					//gọi model insert data vào DB
 
 					$this->load->model('category_model');
+					$update_date = date("Y/m/d");
 					$id_thumb = $this->category_model->insertCategory_model($cat_name, $thumb, $public_flag, $delete_flag, $create_date, $update_date);
 					if ($id_thumb){
 						$new_thumb_name = strval($id_thumb)."_".strval($thumb).$file_ext;
