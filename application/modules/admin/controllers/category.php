@@ -153,10 +153,11 @@ class Category extends CI_Controller {
 			$id_temp = $this->category_model->getVideoByCat($data[$i]['cat_name']);
 			$id[strval($data[$i]['id'])] = $id_temp;
 		}
+		//lấy ra page active
 		//lấy ra tổng số trang
 		$page_number = $this->category_model->getPageNumber();
 		//truyền tổng số trang ra view để dùng for tạo pagination
-		$data = array ('data_cat'=>$data,'page'=>$page_number,'video_id', 'cate'=>$id);
+		$data = array ('data_cat'=>$data,'page'=>$page_number,'video_id', 'cate'=>$id, 'page_active'=>$page);
 
 		$this->load->view('category/listCategory_view', $data, FALSE);
 	}

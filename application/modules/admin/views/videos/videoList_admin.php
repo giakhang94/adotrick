@@ -66,7 +66,7 @@
 				<li><a href="#">&laquo;</a></li>
 				<?php for ($i=0; $i <$page ; $i++):
 				?>
-				<li><a href="<?php echo base_url()?>admin/videos/listVideo_admin/<?php echo $i+1?>"><?=$i+1?></a></li>
+				<li class="page-item <?php echo (floatval($active) == $i+1)?"active":""; ?>"><a href="<?php echo base_url()?>admin/videos/listVideo_admin/<?php echo $i+1?>"><?=$i+1?></a></li>
 				<?php  endfor?>
 				<li><a href="#">&raquo;</a></li>
 			</ul>

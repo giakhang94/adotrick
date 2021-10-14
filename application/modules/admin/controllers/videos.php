@@ -183,7 +183,7 @@ class Videos extends CI_Controller {
 		$this->load->model('video_model');
 		$page_number_admin = $this->video_model->getPageNumber_admin();
 		$data_video = $this->video_model->getPagePagi_admin($page);
-		$data_video = array ('data_video'=>$data_video, 'page'=>$page_number_admin);
+		$data_video = array ('data_video'=>$data_video, 'page'=>$page_number_admin, 'active' =>$page);
 		$this->load->view('videos/videoList_admin', $data_video, FALSE);
 	}
 

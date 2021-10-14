@@ -26,11 +26,6 @@
 								<div class="thumb">
 									<img class="card-img-top" src="<?php echo base_url()?>uploads/<?=$value['thumb'];?>">
 									<span class = "video-time"><?=$value['time'];?></span>
-									<div class="nut">
-										<a href="<?php echo base_url();?>admin/videos/insertVideo/<?=$value['id']?>" class="btn btn-info sua_video"><i class='fas fa-pen' ></i></a>
-										<a href="<?php echo base_url();?>videos/deleteVideo/<?=$value['id']?>" class="btn btn-info xoa_video"><i class='fas fa-window-close' ></i></a>
-									</div>
-
 								</div>
 								<div class="card-body">
 								<h4 class="card-title"><?=$value['title'];?> </h4>
