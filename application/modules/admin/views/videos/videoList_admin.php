@@ -33,8 +33,8 @@
 							<th>Title</th>
 							<th>Thumb url</th>
 							<th>Cate_id</th>
+							<th>Cat_name</th>
 							<th>Description</th>
-							<th>Category</th>
 							<th>Type</th>
 							<th>time</th>
 							<th>comment</th>
@@ -48,8 +48,10 @@
 							<td><?php echo $value['title'] ?></td>
 							<td><?php echo $value['thumb'] ?></td>
 							<td><?php echo $value['category_id'] ?></td>
+							<!-- cate name ở đây chứ còn đâu nữa  -->
+							<td><?php echo $value['Wanbi_saca'] ?></td>
+							<!-- xong cate name  -->
 							<td><?php echo $value['description'] ?></td>
-							<td><?php echo $value['category_id'] ?></td>
 							<td><?php echo $value['type'] ?></td>
 							<td><?php echo $value['time'] ?></td>
 							<td><?php echo $value['comment'];?></td>

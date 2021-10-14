@@ -50,7 +50,7 @@ class Videos extends CI_Controller {
 					'comment'=>"",
 					'type'=>"",
 					'thumb'=>"",
-					'category'=>"	",
+					'category_id'=>"	",
 					'link'=>"",
 				);
 				$data_video_value = array (0=>$data_video_value);
@@ -141,7 +141,7 @@ class Videos extends CI_Controller {
 					$this->load->model('video_model');
 					if($this->video_model->updateVideo($id, $title, $des, $time, $comment, $type, $category, $link, $thumb_old))
 					{
-						header("Location: ".base_url()."videos/listVideo");
+						header("Location: ".base_url()."admin/videos/listVideo_admin");
 
 					}else {
 						header("location ".base_url()."videos/loi-insert_view");
@@ -163,7 +163,7 @@ class Videos extends CI_Controller {
 						$this->load->model('video_model');
 						$res = $this->video_model->updateThumbName($id, $new_thumb_name, $old_path, $new_path,$new_target);
 						if($res){
-							header("Location: ".base_url()."videos/listVideo");
+							header("Location: ".base_url()."admin/videos/listVideo_admin");
 						}
 						else {
 							header("location ".base_url()."videos/loi-insert_view");
