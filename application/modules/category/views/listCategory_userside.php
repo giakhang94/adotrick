@@ -17,19 +17,19 @@
 	</head>
 	<body>
 		<div class="container">
-			<h2 class='title_listvideo'>Danh sách Video</h2>
+			<h2 class='title_listvideo'>Danh sách Category</h2>
 			<div class="row row-eq-height">
 				<?php foreach ($data_cat as $key => $value) : ?>
 					<div class="col-md-3 d-flex">
 						<div class="card-deck list-video">
 							<div class="card video">
 								<div class="thumb">
-									<img class="card-img-top" src="<?php echo base_url()?>uploads/<?=$value['cat_thumb'];?>">
+									<img class="card-img-top" href="<?php echo base_url()?>videos/listVideobycat/<?=$value['id']?>" src="<?php echo base_url()?>uploads/<?=$value['cat_thumb'];?>">
 									<span class = "video-time"><?=$value['create_date'];?></span>
 
 								</div>
 								<div class="card-body">
-								<h4 class="card-title"><?=$value['cat_name'];?> </h4>
+								<p class="card-title"><a href="<?php echo base_url()?>videos/listvideobyCat/<?=$value['id']?>"><?=$value['cat_name'];?> </a></p>
 								<p class="card-text"><small class="text-muted">Last updated <?php echo $value['update_date'];?></small></p>
 								</div>
 							</div>

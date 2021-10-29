@@ -185,8 +185,52 @@ class Videos extends CI_Controller {
 		$data_video = $this->video_model->getPagePagi_admin($page);
 		$data_video = array ('data_video'=>$data_video, 'page'=>$page_number_admin, 'active' =>$page);
 		$this->load->view('videos/videoList_admin', $data_video, FALSE);
-	}
 
+	}
+	public function listVideoByCat($id = 0)
+	{
+		if(!$this->input->post()) {
+			$this->load->model('category_model');
+			$data = $this->category_model->getCat4Video();
+			$data_video = array (
+				'id'=>"",
+				'title'=>"",
+				'category_id'=>"",
+				'link'=>"",
+				'thumb'=>"",
+				'time'=>"",
+				'description'=>"",
+				'type'=>"",
+				'comment'=>""
+			);
+			$error = "Chọn ID rồi nhấn nút Gửi giùm tao mày ơi";
+			$data_video = array (0=>$data_video);
+			$data = array ('data_cat'=>$data, 'data_video'=>$data_video, "error"=>$error);
+			$this->load->view('videos/videoListByCat_view', $data, FALSE);
+
+		}
+		else  {
+			//lay ra category_id
+			$catID = $this->input->post('category');
+			$count = 0;
+			$error = "";
+			$this->load->model('category_model');
+			$data_cat = $this->category_model->getCat4Video();
+			foreach ($data_cat as $key => $value) {
+				if ($value['id'] == $catID){
+					$count = $count + 1;
+				}
+			}
+			if ($count == 0) {
+				$error = "Lỗi: Chưa có id này hoặc mày đã delete nó rồi mày ạ";
+			}
+			//lay ra video
+			$this->load->model('video_model');
+			$data_video = $this->video_model->getVideoByCatID($catID);
+			$data = array('data_cat'=>$data_cat, 'data_video'=>$data_video,'error'=>$error);
+			$this->load->view('videos/videoListByCat_view', $data, FALSE);
+		}
+	}
 }
 
 /* End of file  */

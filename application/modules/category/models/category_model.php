@@ -42,6 +42,14 @@ class Category_model extends CI_Model {
 		$total_rows = count($res);
 		$total_page = ceil($total_rows/$limit);
 		return $total_page;
+	}	
+	public function getTotalRows()
+	{
+		$this->db->select('*');
+		$res = $this->db->get('video_categories');
+		$res = $res->result_array();
+		$total_rows = count($res);
+		return $total_rows;
 	}
 
 

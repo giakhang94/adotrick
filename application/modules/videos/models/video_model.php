@@ -57,6 +57,14 @@ class Video_model extends CI_Model {
 		$res = $res->result_array();
 		return $res;
 	}
+	public function getVideoByCat($catID)
+	{
+		$this->db->select('*');
+		$this->db->where('category_id', $catID);
+		$res = $this->db->get('video');
+		$res = $res->result_array();
+		return $res;
+	}
 }
 
 /* End of file video_model.php */

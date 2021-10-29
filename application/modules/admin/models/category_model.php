@@ -96,6 +96,13 @@ class Category_model extends CI_Model {
 		$res = $res->result_array();
 		return $res;
 	}
+	public function getCat4video()
+	{
+		$this->db->select('*');
+		$res = $this->db->get('video_categories');
+		$res = $res->result_array();
+		return $res;
+	}
 
 }
 
