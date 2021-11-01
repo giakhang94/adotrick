@@ -20,13 +20,16 @@
 	<body>
 		<script>
 			$(document).ready(function(){
-				$("#cac-btn").click(function(tao){
+				$("#cat_select").click(function(tao){
 					tao.preventDefault();
     				id = $("#select_cat_ID").val();	
-    				addID = "http://localhost/MVC/adotricks/videos/videos/listvideobycat/"+ id;
+    				addID = "<?php echo base_url();?>videos/listvideobycat/"+ id;
     				console.log(addID);
     				$('#cat_select').attr('action', addID);
-				});		
+				});	
+				$('#cac-btn').click(function(event) {
+					$('#cat_select').submit();
+				});	
 			});
 		</script>
 		<div class="form-cat">
@@ -46,8 +49,8 @@
 								<option value="<?=$value_cat['id']?>"><?=$value_cat['cat_name']?></option>
 							<?php endforeach ?>
 						</select>
-						<button type="" class="btn btn-info sub-btn" id="cac-btn">GetID</button>
-						<button type="sumbit" style = "margin-left:5px"class="btn btn-primary sub-btn" id="submit-btn">Submit</button>
+						<button type="" class="btn btn-primary sub-btn" id="cac-btn">Submit</button>
+						<!-- <button type="sumbit" style = "margin-left:5px"class="btn btn-primary sub-btn" id="submit-btn">Submit</button> -->
 					</form>
 				</div>
 			</div>
