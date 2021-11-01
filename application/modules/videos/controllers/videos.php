@@ -66,8 +66,8 @@ class Videos extends CI_Controller {
 		else  {
 			$signal = 2;
 			//lay ra category_id
-			// $catID = ($id !== 0)?$id:$this->input->post('category');
-			$catID = $id;
+			$catID = ($id !== 0)?$id:$this->input->post('category');
+			// $catID = $id;
 			$count = 0;
 			$error = "";
 			$this->load->model('video_model');

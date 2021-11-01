@@ -106,6 +106,13 @@ class Video_model extends CI_Model {
 		$res = $res->result_array();
 		return $res;
 	}
+	public function getVideo_tach_bang()
+	{
+		$this->db->select('*');
+		$res = $this->db->get('video');
+		$res = $res->result_array();
+		return $res;
+	}
 }
 
 /* End of file video_model.php */
