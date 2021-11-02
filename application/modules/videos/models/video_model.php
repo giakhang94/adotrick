@@ -59,9 +59,11 @@ class Video_model extends CI_Model {
 	}
 	public function getVideoByCat($catID)
 	{
-		$this->db->select('*');
-		$this->db->where('category_id', $catID);
-		$res = $this->db->get('video');
+		$this->db->select('video.*,video_categories.id as cate_id, video_category_map.video_id as map_video_id, video_category_map.category_id as map_cate_id');
+		$this->db->join('video_category_map', 'video_category_map.category_id = video_categories.id', 'left');
+		$this->db->join('video', 'video.id = video_category_map.video_id', 'left');
+		$this->db->where('video_categories.id', $catID);
+		$res = $this->db->get('video_categories');
 		$res = $res->result_array();
 		return $res;
 	}

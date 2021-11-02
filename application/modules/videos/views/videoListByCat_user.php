@@ -44,13 +44,13 @@
 				<div class="panel-body">
 					<form id="cat_select"class="form-inline" action="" enctype="multipart/form-data" method="POST">
 						<select class="c-select form-cotrol custom-select my-1 mr-sm-2" id="select_cat_ID" name = "category">
-							<option value = "222"selected>Open this select menu</option>
+							<option value = "222" <?php echo ($signal ==1)?"selected":""?>>Open this select menu</option>
 							<option value = "100">Test ko có id</option>
 							<option value = "101">Test ko có id</option>
 							<?php 
 								foreach ($data_cat as $key => $value_cat):
 							?>
-								<option value="<?=$value_cat['id']?>"><?=$value_cat['cat_name']?></option>
+								<option  <?php echo (($signal !== 1)&&($value_cat['id'] == $id_signal))?"selected":""?> value="<?=$value_cat['id']?>"><?=$value_cat['cat_name']?></option>
 							<?php endforeach ?>
 						</select>
 						<button type="" class="btn btn-primary sub-btn" id="cac-btn">Submit</button>
@@ -74,7 +74,7 @@
 										<span class = "video-time"><?=$value['time'];?></span>
 									</div>
 									<div class="card-body">
-									<h4 class="card-title"><?=$value['title'];?> </h4>
+									<h4 class="card-title"><?=($value['title']!==NULL)?$value['title']:"Category này chưa có video nào";?> </h4>
 									<p class="card-text"><?=$value['description'];?></p>
 									<p class="card-text">Cate_id_for_check: <?=$value['category_id'];?></p>
 									<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>

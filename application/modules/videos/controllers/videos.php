@@ -58,13 +58,15 @@ class Videos extends CI_Controller {
 			);
 			$error = "Chọn ID rồi nhấn nút Gửi giùm tao mày ơi";
 			$signal = 1;
+			$id_signal = 0;
 			$data_video = array (0=>$data_video);
-			$data = array ('data_cat'=>$data, 'data_video'=>$data_video, "error"=>$error,"signal"=>$signal);
+			$data = array ('data_cat'=>$data, 'data_video'=>$data_video, "error"=>$error,"signal"=>$signal,"id_signal"=>$id_signal);
 			$this->load->view('videoListByCat_user', $data, FALSE);
 
 		}
 		else  {
 			$signal = 2;
+			$id_signal = $id;
 			//lay ra category_id
 			$catID = ($id !== 0)?$id:$this->input->post('category');
 			// $catID = $id;
@@ -83,7 +85,7 @@ class Videos extends CI_Controller {
 			//lay ra video
 			$this->load->model('video_model');
 			$data_video = $this->video_model->getVideoByCat($catID);
-			$data = array('data_cat'=>$data_cat, 'data_video'=>$data_video,'error'=>$error,"signal"=>$signal);
+			$data = array('data_cat'=>$data_cat, 'data_video'=>$data_video,'error'=>$error,"signal"=>$signal,"id_signal"=>$id_signal);
 			$this->load->view('videoListByCat_user', $data, FALSE);
 		}
 	}
