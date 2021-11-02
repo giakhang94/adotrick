@@ -28,19 +28,64 @@
 	margin-top:  30px;
 	margin-bottom: 30px;
 }
-.card .thumb .video-time {
+/*lam card cho video*/
+.video .thumb {
+	position: relative;
+}
+.video .thumb .video-time {
 	position: absolute;
 	background-color: #05424d	;
 	text-decoration: bold;
-	top:  90%;
+	bottom:  0%;
 	right: 0%;
 	color:  white;
 	padding-right: 5px;
 	padding-left:  5px;
 }
-.card .thumb {
-	position: relative;
+/*//tao cho các card có height bằng nhau*/
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
 }
+.video .nut {
+	position: absolute;
+	top: 0px;
+	left:  0px;
+}
+.nut .sua_video, .xoa_video {
+	background-color: transparent;
+	border: none;
+	max-width: 20px;
+	height: auto;
+	font-size: 15px;
+	color:  green;
+}
+.nut .xoa_video:hover i{
+	color:  white;
+}
+.nut .sua_video:hover i{
+	color:  white;
+}
+.nut .xoa_video:hover {
+	background-color: transparent;
+	border:  none;
+}
+.nut .sua_video:hover {
+		background-color: transparent;
+		border:  none;
+}
+.row .d-flex {
+	margin-bottom:  30px;
+}
+/*làm cho hình thumb có height bằng nhau */
+/*.video .thumb .card-img-top {
+	height: 150px;
+	object-fit: cover;
+	width: 100%;
+}*/
+/*xong css cho card video*/
 .load-more {
 	text-align: center;
 	margin-top:  30px;
@@ -167,4 +212,37 @@ ul.social-network li {
 }
 .footer .follow-us, .youtube-footer {
 	font-size: 15px;
+}
+.addVideo span {
+	min-width: 110px;
+}
+.addVideo .label-dropdown{
+	min-width: 110px;
+}
+.addVideo {
+	padding-right: 30px;
+	padding-left:  30px;
+}
+.main-card .form_header {
+	background-color: #05424d;
+}
+.main-card .form_header .form_title {
+	color:  white;
+}
+.addVideo .nut_submit, .nut_reset {
+	background-color: #05424d;
+	border-color: #05424d;
+}
+.addVideo .btn-info:hover {
+    color: #fff;
+    background-color: #138496;
+    border-color: #117a8b;
+}
+/*//style cho pagination */
+.pagination-videolist {
+	text-align: center;
+}
+/*//xong pagination*/
+.main-card .addVideo .radio-cat {
+	height: fit-content;
 }
