@@ -20,22 +20,26 @@
 	<body>
 		<script>
 			$(document).ready(function(){
-				$("#cat_select").click(function(tao){
-					tao.preventDefault();
+				$('#cac-btn').click(function(event) {
     				id = $("#select_cat_ID").val();	
     				addID = "<?php echo base_url();?>videos/listvideobycat/"+ id;
     				console.log(addID);
     				$('#cat_select').attr('action', addID);
+					tao.preventDefault();
+					// $('#cat_select').submit();
+					// event.preventDefault();
 				});	
-				$('#cac-btn').click(function(event) {
+				$("#cat_select").submit(function(tao){
 					$('#cat_select').submit();
 				});	
+
 			});
 		</script>
 		<div class="form-cat">
 			<div class="panel panel-info">
 				<div class="panel-heading">
 					<h3 class="panel-title">Chọn category</h3>
+					<small class='title_listvideo'><a href="<?=base_url();?>category/listCategory">>>Xem danh sách Category</a></small>
 				</div>
 				<div class="panel-body">
 					<form id="cat_select"class="form-inline" action="" enctype="multipart/form-data" method="POST">
@@ -56,7 +60,7 @@
 			</div>
 		</div>
 		<div class="container">
-			<h2 class='title_listvideo'>Danh sách Video</h2>
+			<h2>Danh sách video</h2>
 			<?php 
 				if ($signal !==1):
 			?>
