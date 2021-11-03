@@ -68,7 +68,7 @@
 							<td>#</td>
 							<td><?php echo $value['title'] ?></td>
 							<td><?php echo $value['thumb'] ?></td>
-							<td><?php echo $value['category_id'] ?></td>
+							<td><?php echo $value['cate_id'] ?></td>
 							<!-- cate name ở đây chứ còn đâu nữa  -->
 							<!-- xong cate name  -->
 							<td><?php echo $value['description'] ?></td>

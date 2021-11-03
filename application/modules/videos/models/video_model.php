@@ -44,9 +44,10 @@ class Video_model extends CI_Model {
 		}else {
 			$offset = ($page-1)*2;	
 		}
-		$this->db->select('video.*,video_categories.cat_name as cat_name_category');
-		$this->db->join('video_categories', 'video_categories.id = video.category_id', 'left');
-		$res = $this->db->get('video', $limit, $offset);
+		$this->db->select('video.*,video_categories.cat_name as cat_name_category, video_categories.id as cate_id');
+		$this->db->join('video_category_map', 'video_category_map.category_id = video_categories.id', 'left');
+		$this->db->join('video', 'video.id = video_category_map.video_id', 'left');
+		$res = $this->db->get('video_categories', $limit, $offset);
 		$res = $res->result_array();
 		return $res;
 	}
