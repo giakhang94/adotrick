@@ -42,7 +42,7 @@ class Videos extends CI_Controller {
 	}
 	public function listVideoByCat($id = 0)
 	{
-		if(($id == 0)&&(!$this->input->post())) {
+		if(($id == 0)) {
 			$this->load->model('video_model');
 			$data = $this->video_model->getCategory();
 			$data_video = array (
@@ -85,6 +85,9 @@ class Videos extends CI_Controller {
 			//lay ra video
 			$this->load->model('video_model');
 			$data_video = $this->video_model->getVideoByCat($catID);
+			if(!isset($data_video[0]['id']) && $count !== 0) {
+				$error = "Category này chưa có video";
+			}
 			$data = array('data_cat'=>$data_cat, 'data_video'=>$data_video,'error'=>$error,"signal"=>$signal,"id_signal"=>$id_signal);
 			$this->load->view('videoListByCat_user', $data, FALSE);
 		}

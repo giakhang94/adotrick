@@ -25,13 +25,7 @@
     				addID = "<?php echo base_url();?>videos/listvideobycat/"+ id;
     				console.log(addID);
     				$('#cat_select').attr('action', addID);
-					tao.preventDefault();
-					// $('#cat_select').submit();
-					// event.preventDefault();
-				});	
-				$("#cat_select").submit(function(tao){
-					$('#cat_select').submit();
-				});	
+				});
 
 			});
 		</script>
@@ -44,7 +38,7 @@
 				<div class="panel-body">
 					<form id="cat_select"class="form-inline" action="" enctype="multipart/form-data" method="POST">
 						<select class="c-select form-cotrol custom-select my-1 mr-sm-2" id="select_cat_ID" name = "category">
-							<option value = "222" <?php echo ($signal ==1)?"selected":""?>>Open this select menu</option>
+							<option value = "" <?php echo ($signal ==1)?"selected":""?>>Open this select menu</option>
 							<option value = "100">Test ko có id</option>
 							<option value = "101">Test ko có id</option>
 							<?php 
@@ -62,7 +56,7 @@
 		<div class="container">
 			<h2>Danh sách video</h2>
 			<?php 
-				if ($signal !==1):
+				if ($signal !==1 && isset($data_video[0]['id'])):
 			?>
 				<div class="row row-eq-height">
 					<?php foreach ($data_video as $key => $value) : ?>
@@ -74,7 +68,7 @@
 										<span class = "video-time"><?=$value['time'];?></span>
 									</div>
 									<div class="card-body">
-									<h4 class="card-title"><?=($value['title']!==NULL)?$value['title']:"Category này chưa có video nào";?> </h4>
+									<h4 class="card-title"><?=$value['title'];?> </h4>
 									<p class="card-text"><?=$value['description'];?></p>
 									<p class="card-text">Cate_id_for_check: <?=$value['category_id'];?></p>
 									<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
