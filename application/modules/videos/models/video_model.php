@@ -47,9 +47,24 @@ class Video_model extends CI_Model {
 		$this->db->select('video.*,video_categories.cat_name as cat_name_category, video_categories.id as cate_id');
 		$this->db->join('video_category_map', 'video_category_map.category_id = video_categories.id', 'left');
 		$this->db->join('video', 'video.id = video_category_map.video_id', 'left');
-		$res = $this->db->get('video_categories', $limit, $offset);
-		$res = $res->result_array();
-		return $res;
+		$res_video_list = $this->db->get('video_categories', $limit, $offset);
+		$res_video_list = $res_video_list->result_array();
+		$this->db->select('video_categories.*,video_category_map.id as map_id,video_category_map.category_id as cate_id, video_category_map.video_id as video_id');
+		$this->db->join('video_category_map', 'video_category_map.category_id = video_categories.id', 'left');
+		$res_map = $this->db->get('video_categories');
+		$res_map = $res_map->result_array();
+		$dem = count($res_map); 
+		$dem_for_cate_array = 0;
+		for ($j = 0; $j < count($res_video_list); $j++) {
+			for ($i=0; $i < $dem ; $i++) { 
+				if($res_video_list[$j]['id'] == $res_map[$i]['video_id']) {
+					$res_video_list[$j]['category'][$dem_for_cate_array] = $res_map[$i];
+					$dem_for_cate_array = $dem_for_cate_array + 1;
+				}
+			}
+			$dem_for_cate_array = 0;
+		}
+		return $res_video_list; //lát sửa lại sau chỗ return 1
 	}
 	public function getCategory()
 	{

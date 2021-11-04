@@ -30,8 +30,14 @@
 								<div class="card-body">
 								<h4 class="card-title"><?=$value['title'];?> </h4>
 								<p class="card-text"><?=$value['description'];?></p>
-								<p class="card-text">Cate_id_for_check: <?=$value['cate_id'];?></p>
-								<p class="card-text">Cate_name: <?=$value['cat_name_category'];?></p>
+								<p class="card-text">
+									Categories: 
+									<?php
+										foreach ($value['category'] as $key => $value_cate) {
+											echo $value_cate['cat_name'].", ";
+										}
+									?>
+								</p>
 								<p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
 								</div>
 							</div>
