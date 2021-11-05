@@ -42,13 +42,14 @@ class Video_model extends CI_Model {
 		if($page == 1) {
 			$offset = 0;
 		}else {
-			$offset = ($page-1)*2;	
+			$offset = ($page-1)*$limit;	
 		}
 		$this->db->select('*');
 		$res_video_list = $this->db->get('video', $limit, $offset);
 		$res_video_list = $res_video_list->result_array();
 		$this->db->select('video_categories.*,video_category_map.id as map_id,video_category_map.category_id as cate_id, video_category_map.video_id as video_id');
 		$this->db->join('video_category_map', 'video_category_map.category_id = video_categories.id', 'left');
+		$option=array ("");
 		foreach ($res_video_list as $key => $value_option) {
 			$option[]=$value_option['id'];
 		}
