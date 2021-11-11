@@ -116,6 +116,21 @@ class Video_model extends CI_Model {
 		$res = $res->result_array();
 		return $res;
 	}
+
+	public function getCategoriesMapByVideoId($videoId) {
+		$this->db->select('video_categories.*');
+		$this->db->join('video_categories', 'video_categories.id = video_category_map.category_id', 'inner');
+		$this->db->where('video_category_map.video_id', $videoId);
+		$this->db->where('video_categories.delete_flag', 0);
+		$query = $this->db->get('video_category_map');
+		$res = $query->result_array();
+
+		$result = array();
+		foreach($res as $category) {
+			$result[] = $category['id'];
+		}
+		return $result;
+	}
 }
 
 /* End of file video_model.php */

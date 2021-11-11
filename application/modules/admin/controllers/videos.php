@@ -1,4 +1,4 @@
-`<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+<?php if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 
 class Videos extends CI_Controller {
 
@@ -231,6 +231,184 @@ class Videos extends CI_Controller {
 			$this->load->view('videos/videoListByCat_view', $data, FALSE);
 		}
 	}
+
+	public function form($id = 0){
+		$this->upload_error = '';
+		$this->load->model('video_model');
+		$this->load->model('category_model');
+
+		// get category master list
+		$data['category_list'] = $this->video_model->getCategory();
+
+		// prepare default video data
+		$data['data_video_value'] = array (
+			'id' => "",
+			'title' => "",
+			'link' => "",
+			'thumb' => "",
+			'time' => "",
+			'description' => "",
+			'type' => "",
+			'comment' => "",
+		);
+
+		$data['video_category_map'] = array();
+
+		if($id != 0) {
+			// in case edit form, get video data from db
+			$data['data_video_value'] = $this->video_model->getVideoById($id)[0];
+			// display error message in case no video data
+			if(!$data['data_video_value']) {
+				echo '<pre>';
+				print_r('Lỗi: Video không tồn tại');
+				die();
+			}
+
+			// get video's category list
+			$data['video_category_map'] = $this->video_model->getCategoriesMapByVideoId($id);
+		}
+
+		// validation rules
+		$this->load->helper('form');
+		$this->load->library('form_validation');
+		$this->form_validation->set_error_delimiters('<div style="clear:both;"></div><div class="callout callout-danger"  style="margin-top: 5px;">', '</div>');
+
+		$this->form_validation->set_rules('title', 'Title', 'required|trim|max_length[300]');
+		$this->form_validation->set_rules('link', 'Link', 'required|trim');
+		$this->form_validation->set_rules('thumb', 'Thumb', 'trim|callback_validate_thumb_upload');
+		$this->form_validation->set_rules('time', 'Time', 'required|trim');
+		$this->form_validation->set_rules('description', 'Description', 'trim');
+		$this->form_validation->set_rules('type', 'Type', 'trim');
+		$this->form_validation->set_rules('comment', 'Comment', 'trim');
+		$this->form_validation->set_rules('category[]', 'Category', 'trim');
+
+		// not submit? display form
+		if(!$this->input->post()) {
+			$this->load->view('videos/form', $data, FALSE);
+			return;
+		}
+
+		// PROCEED SUBMIT
+		if (isset($_FILES["thumb"]['name']) && $_FILES["thumb"]['name']) {
+			$thumb = $this->_upload('thumb');
+		}
+
+		if (!$this->form_validation->run()) {
+			$data['video_category_map'] = $this->input->post("category");
+			if (!$data['video_category_map']){
+				$data['video_category_map'] = array();
+			}
+			$this->load->view('videos/form', $data, FALSE);
+			return;
+		}
+
+		$video_data = array(
+			'title' => $this->input->post('title'),
+			'description' => $this->input->post('description'),
+			'time' => $this->input->post('time'),
+			'comment' => $this->input->post('comment'),
+			'type' => $this->input->post('type'),
+			'link' => $this->input->post('link'),	
+		);
+
+		// demonstrate purpose only, actually, logic like insert and update
+		// should be moved to model
+		if(!$id) {
+			// insert
+			$this->db->insert('video', $video_data);
+			$id = $this->db->insert_id();
+
+		} else {
+			// update
+			$this->db->where('id', $id);
+			$this->db->update('video', $video_data);
+		}
+
+
+		// THUMBNAIL
+		// move thumb from temp to $target_folder
+		$target_folder = FCPATH . "uploads/";
+
+		$temp_file_path = $thumb['full_path'];
+		$target_file_path = $target_folder . $thumb['file_name'];
+
+		rename($temp_file_path, $target_file_path);
+
+		// delete old thumb
+		if($data['data_video_value']['thumb']) {
+			$old_file_path = $target_folder . $data['data_video_value']['thumb'];
+			unlink($old_file_path);
+		}
+
+		// CATEGORIES
+		$form_categories = $this->input->post('category');
+		
+		$delete_categories = array();
+		$insert_categories = array();
+		foreach($form_categories as $form_category_id) {
+			if(!in_array($form_category_id, $data['video_category_map'])) {
+				$insert_categories[] = array(
+					'video_id' => $id,
+					'category_id' => $form_category_id
+				);
+			}
+		}
+
+		foreach($data['video_category_map'] as $current_category_map_id) {
+			if(!in_array($current_category_map_id, $form_categories)) {
+				$delete_categories[] = $current_category_map_id;
+			}
+		}
+
+		// delete
+		if($delete_categories) {
+			$this->db->where('video_id', $id);
+			$this->db->where_in('category_id', $delete_categories);
+			$this->db->delete('video_category_map');
+		}
+
+		// insert
+		if($insert_categories) {
+			$this->db->insert_batch('video_category_map', $insert_categories);
+		}
+
+		header("Location: ".base_url()."admin/videos/listVideo_admin");
+
+
+	}
+
+	public function validate_thumb_upload() {
+		if ($this->upload_error) {
+			$this->form_validation->set_message('validate_thumb_upload', $this->upload_error);
+			return FALSE;
+		}
+		
+		return TRUE;
+	}
+
+	private function _upload($input) {
+		//upload
+		$config['upload_path'] = "./uploads_temp/";
+		$config['allowed_types'] = 'gif|jpg|png';
+		$config['max_size']  = '10000';
+		$config['max_width']  = '102400';
+		$config['max_height']  = '76800';
+		$config['file_name'] = strval(time());
+		
+		$this->load->library('upload', $config);
+		
+
+
+		if ($this->upload->do_upload($input))
+		{
+			return $this->upload->data();
+		}
+		else {
+			$this->upload_error = $this->upload->display_errors();
+			return false;
+		}
+
+    }
 }
 
 /* End of file  */
