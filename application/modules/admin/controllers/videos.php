@@ -280,7 +280,7 @@ class Videos extends CI_Controller {
 		$this->form_validation->set_rules('description', 'Description', 'trim');
 		$this->form_validation->set_rules('type', 'Type', 'trim');
 		$this->form_validation->set_rules('comment', 'Comment', 'trim');
-		$this->form_validation->set_rules('category[]', 'Category', 'trim');
+		$this->form_validation->set_rules('category[]', 'Category', 'required|trim');
 
 		// not submit? display form
 		if(!$this->input->post()) {
