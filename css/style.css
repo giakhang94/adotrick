@@ -246,3 +246,6 @@ ul.social-network li {
 .main-card .addVideo .radio-cat {
 	height: fit-content;
 }
+#category-multi .select2-container {
+	width:  90%;
+}

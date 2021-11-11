@@ -15,10 +15,19 @@ $this->load->helper('form');
 		<link rel="stylesheet" href="<?=base_url()?>css/style.css">
 		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 		<link rel="shortcut icon" href="<?=base_url()?>img/round-title.ico" />
+		<link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
+		<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 	</head>
 	</head>
 	<body>
-
+		<script>
+			$(document).ready(function(){
+				$("#category-multi").select2({
+				  	maximumSelectionLength: 10
+				});
+			})
+		</script>	
 		<div class="card  main-card">
 			<div class="card-header form_header">
 				<h3 class="panel-title form_title">Thêm video vào web</h3>
@@ -36,7 +45,7 @@ $this->load->helper('form');
 						<div class="input-group-prepend">
 						    <label class="input-group-text label-dropdown" for="inputGroupSelect01">Category</label>
 						</div>
-						<select class="custom-select" id="category" name = "category">
+						<select class="custom-select" id="category-multi" name = "category[]" multiple="multiple">
 						    <option>Chọn 1 category</option>
 						    <?php foreach ($category as $key => $value2) :?>
 						    <option <?php echo $value['category_id']== $value2['id']?"selected":"";?> value="<?php echo $value2['id'];?>"><?php echo $value2['cat_name'];?></option>
@@ -100,7 +109,7 @@ $this->load->helper('form');
 
 		<!-- Optional JavaScript -->
 		<!-- jQuery first, then Popper.js, then Bootstrap JS -->
-		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+		<!-- <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script> -->
 		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
 		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.min.js" integrity="sha384-+YQ4JLhjyBLPDQt//I+STsc9iw4uQqACwlvpslubQzn4u2UU2UFM80nGisd026JF" crossorigin="anonymous"></script>
 	</body>
