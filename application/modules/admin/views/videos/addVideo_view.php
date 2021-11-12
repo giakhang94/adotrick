@@ -46,9 +46,9 @@ $this->load->helper('form');
 						    <label class="input-group-text label-dropdown" for="inputGroupSelect01">Category</label>
 						</div>
 						<select class="custom-select" id="category-multi" name = "category[]" multiple="multiple" placeholder = "Chọn category">
-						    <?php  foreach ($array_cat as $key => $value2) :?>
+						    <?php  foreach ($category as $key => $value2) :?>
 						    <option <?php foreach ($value['cate_array'] as $key => $value3) :
-						     echo $value3['cate_id']== $value2['cate_id']?"selected":""; endforeach?> value="<?php echo $value2['cate_id'];?>"><?php echo $value2['cat_name'];?></option>
+						     echo $value3['cate_id']== $value2['id']?"selected":""; endforeach?> value="<?php echo $value2['id'];?>"><?php echo $value2['cat_name'];?></option>
 						<?php endforeach ?>
 					  	</select>
 					</div>			

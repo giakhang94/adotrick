@@ -61,11 +61,11 @@ class Videos extends CI_Controller {
 				$this->load->model('video_model');
 				// $data_video_value_map = $this->video_model->getVideoById($id);
 				$data_video_value = $this->video_model->getVideoById($id);
-				$video_category_map = $this->video_model->getVideoCatMapById($id);
+				// $video_category_map = $this->video_model->getVideoCatMapById($id);
 
 			}
 
-			$data = array ('video_value'=>$data_video_value, 'category'=>$cat,'array_cat'=>$video_category_map);
+			$data = array ('video_value'=>$data_video_value, 'category'=>$cat);
 			$this->load->view('videos/addvideo_view', $data, FALSE);
 		}else {
 			if($id == 0){
