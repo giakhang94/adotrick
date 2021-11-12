@@ -53,16 +53,19 @@ class Videos extends CI_Controller {
 					'category_id'=>"	",
 					'link'=>"",
 				);
+				$video_category_map = []; 
 				$data_video_value = array (0=>$data_video_value);
 
 			}
 			else {
 				$this->load->model('video_model');
+				// $data_video_value_map = $this->video_model->getVideoById($id);
 				$data_video_value = $this->video_model->getVideoById($id);
+				$video_category_map = $this->video_model->getVideoCatMapById($id);
 
 			}
 
-			$data = array ('video_value'=>$data_video_value, 'category'=>$cat);
+			$data = array ('video_value'=>$data_video_value, 'category'=>$cat,'array_cat'=>$video_category_map);
 			$this->load->view('videos/addvideo_view', $data, FALSE);
 		}else {
 			if($id == 0){

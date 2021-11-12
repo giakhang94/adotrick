@@ -37,13 +37,34 @@ class Video_model extends CI_Model {
 		$this->db->insert('video', $object);
 		return $this->db->insert_id();
 	}
-	public function getVideoById($id)
+	public function getVideoById2($id)
 	{
-		// $this->db->select('*');
+		$this->db->select('*');
 		$this->db->where('id', $id);
 		$res = $this->db->get('video');
 		$res = $res->result_array();
 		return $res;
+	}
+	public function getVideoById($id)
+	{
+		$this->db->select('*');
+		$this->db->where('video.id', $id);
+		$res_video = $this->db->get('video');
+		$res_video = $res_video->result_array();
+		$this->db->select('video.id as video_id,video_category_map.category_id as cate_id, video_categories.cat_name as cate_name');
+		$this->db->join('video_category_map', 'video_category_map.video_id = video.id', 'left');
+		$this->db->join('video_categories', 'video_categories.id = video_category_map.category_id', 'left');
+		$this->db->where('video.id', $id);
+		$res_map = $this->db->get('video');
+		$res_map = $res_map->result_array();
+		foreach ($res_video as $key => $value_video) {
+			foreach ($res_map as $key => $value_map) {
+				if ($value_video['id'] == $value_map['video_id']){
+					$res_video[0]['cate_array'][] = $value_map;
+				}
+			}
+		}
+		return $res_video;
 	}
 	public function updateVideo($id,$title, $des, $time, $comment, $type, $category, $link, $thumb)
 	{
@@ -116,20 +137,15 @@ class Video_model extends CI_Model {
 		$res = $res->result_array();
 		return $res;
 	}
-
-	public function getCategoriesMapByVideoId($videoId) {
-		$this->db->select('video_categories.*');
-		$this->db->join('video_categories', 'video_categories.id = video_category_map.category_id', 'inner');
-		$this->db->where('video_category_map.video_id', $videoId);
-		$this->db->where('video_categories.delete_flag', 0);
-		$query = $this->db->get('video_category_map');
-		$res = $query->result_array();
-
-		$result = array();
-		foreach($res as $category) {
-			$result[] = $category['id'];
-		}
-		return $result;
+	public function getVideoCatMapById($id)
+	{
+		$this->db->select('video.id as video_id, video_categories.id as cate_id, video_category_map.video_id as map_video_id, video_category_map.category_id as map_cate_id, video_categories.*');
+		$this->db->join('video_category_map', 'video_category_map.video_id = video.id', 'left');
+		$this->db->join('video_categories', 'video_categories.id = video_category_map.category_id', 'left');
+		$this->db->where('video.id', $id);
+		$res = $this->db->get('video');
+		$res = $res->result_array();
+		return $res;
 	}
 }
 
