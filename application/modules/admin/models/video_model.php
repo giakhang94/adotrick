@@ -19,7 +19,7 @@ class Video_model extends CI_Model {
 		$res = $res->result_array();
 		return $res;
 	}
-	public function insertVideo_model($title, $des, $time, $comment, $type, $category, $link, $thumb)
+	public function insertVideo_model($title, $des, $time, $comment, $type, $link, $thumb)
 	{
 		$this->load->helper('url');
 		$this->load->helper('form');
@@ -29,7 +29,6 @@ class Video_model extends CI_Model {
 			'time'=>$time,
 			'comment'=>$comment,
 			'type'=>$type,
-			'category_id'=>$category,
 			'link'=>$link,
 			'thumb'=>$thumb
 		);
@@ -66,7 +65,7 @@ class Video_model extends CI_Model {
 		}
 		return $res_video;
 	}
-	public function updateVideo($id,$title, $des, $time, $comment, $type, $category, $link, $thumb)
+	public function updateVideo($id,$title, $des, $time, $comment, $type,  $link, $thumb)
 	{
 		$object = array (
 			'title'=>$title,
@@ -74,7 +73,6 @@ class Video_model extends CI_Model {
 			'time'=>$time,
 			'comment'=>$comment,
 			'type'=>$type,
-			'category_id'=>$category,
 			'link'=>$link,
 			'thumb'=>$thumb
 		);

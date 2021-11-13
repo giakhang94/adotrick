@@ -42,6 +42,7 @@ class Videos extends CI_Controller {
 			$this->load->model('video_model');
 			$cat = $this->video_model->getCategory();
 			if($id == 0) {
+				$cate_tam = array ();
 				$data_video_value = array (
 					'id'=>0,
 					'title'=>"",
@@ -50,8 +51,9 @@ class Videos extends CI_Controller {
 					'comment'=>"",
 					'type'=>"",
 					'thumb'=>"",
-					'category_id'=>"	",
+					'category_id'=>"",
 					'link'=>"",
+					'cate_array'=>$cate_tam,
 				);
 				$video_category_map = []; 
 				$data_video_value = array (0=>$data_video_value);
@@ -68,13 +70,19 @@ class Videos extends CI_Controller {
 			$data = array ('video_value'=>$data_video_value, 'category'=>$cat);
 			$this->load->view('videos/addvideo_view', $data, FALSE);
 		}else {
+			$category_update = array ();
+			$category_delete = array ();
+			$category_insert = array ();
+
+			
 			if($id == 0){
 				$title = $this->input->post('title');
 				$des = $this->input->post('description');
 				$time = $this->input->post('time');
 				$comment = $this->input->post('comment');
 				$type = $this->input->post('type');
-				$category = $this->input->post('category');
+				$category = $this->input->post('category[]');	
+				
 				$link = $this->input->post('link');	
 				//làm cái upload thumbnail
 				$config['upload_path'] = './uploads_temp/';
@@ -89,19 +97,22 @@ class Videos extends CI_Controller {
 				
 				if ( ! $this->upload->do_upload("thumb")){
 					$error = array('error' => $this->upload->display_errors());
-							echo "<pre>";
-							print_r($error);
-							echo "</pre>";
-							exit;
 				}
 				else{
 					$data = array('upload_data' => $this->upload->data());
 					echo "success";
 					$file_ext = $data['upload_data']['file_ext'];
 					//gọi model insert data vào DB
-
+						
 					$this->load->model('video_model');
-					$id_thumb = $this->video_model->insertVideo_model($title, $des, $time, $comment, $type, $category, $link, $thumb);
+					$id_thumb = $this->video_model->insertVideo_model($title, $des, $time, $comment, $type, $link, $thumb);
+					//$this->load->model('video_cate_map_model');
+					$this->load->model('video_cate_map_model');
+					if($this->video_cate_map_model->insertmap($category, $id_thumb)){
+						echo "insert thành công vào map";
+					}else {
+						echo "insert vào map chưa thành công thù";
+					}
 					if ($id_thumb){
 						$new_thumb_name = strval($id_thumb)."_".strval($thumb).$file_ext;
 						$old_path = $config['upload_path'].$thumb.$file_ext;
@@ -120,12 +131,55 @@ class Videos extends CI_Controller {
 					}
 				}
 			}else {
+				$category = $this->input->post('category[]');
+				$this->load->model('video_cate_map_model');
+				$map = $this->video_cate_map_model->getMapByVideoId($id);
+				$value_map_array = array ();
+				foreach ($map as $key => $valuemap) {					
+					$value_map_array[] = $valuemap['cate_id'];
+				}
+				foreach ($category as $key => $value_cate) {;
+					if(in_array($value_cate,$value_map_array)) {
+						$category_update[] = $value_cate;
+					}else {
+						$category_insert[] = $value_cate;
+					}
+				}						
+				if(!empty($category_insert)){
+					$this->load->model('video_cate_map_model');
+					if($this->video_cate_map_model->insertmap($category_insert, $id)){
+						echo "insert thành công vào map";
+					}else {
+						echo "insert vào map chưa thành công thù";
+					}
+				}
 				$title = $this->input->post('title');
 				$des = $this->input->post('description');
 				$time = $this->input->post('time');
 				$comment = $this->input->post('comment');
 				$type = $this->input->post('type');
-				$category = $this->input->post('category');
+				//xu ly category_delete
+				$this->load->model('video_cate_map_model');
+				//tạo array chứa các cate hiện có của video
+				$cate_hien_co = array ();	
+				foreach ($category as $key => $value_cate_hienco) {
+					$cate_hien_co[] = $value_cate_hienco;
+				}
+				$res_mapbyvideoID = $this ->video_cate_map_model->getMapByVideoId($id);
+				foreach ($res_mapbyvideoID as $key => $value_mapID) {
+;
+							
+					if(!in_array($value_mapID['cate_id'],$cate_hien_co)){
+						$category_delete[] = $value_mapID['cate_id'];
+					}
+				}
+
+
+				if(!empty($category_delete)){
+					$this->load->model('video_cate_map_model');
+					$this->video_cate_map_model->delMap($category_delete,$id);
+					//để model echo kết quả luôn
+				}
 				$link = $this->input->post('link');	
 				//làm cái upload thumbnail
 				$config['upload_path'] = './uploads_temp/';
@@ -142,7 +196,7 @@ class Videos extends CI_Controller {
 					$error = array('error' => $this->upload->display_errors());
 					$thumb_old = $this->input->post('thumb_old');
 					$this->load->model('video_model');
-					if($this->video_model->updateVideo($id, $title, $des, $time, $comment, $type, $category, $link, $thumb_old))
+					if($this->video_model->updateVideo($id, $title, $des, $time, $comment, $type, $link, $thumb_old))
 					{
 						header("Location: ".base_url()."admin/videos/listVideo_admin");
 
@@ -157,7 +211,7 @@ class Videos extends CI_Controller {
 					$file_ext = $data['upload_data']['file_ext'];
 					//gọi model insert data vào DB
 					$this->load->model('video_model');
-					if($this->video_model->updateVideo($id, $title, $des, $time, $comment, $type, $category, $link, $thumb))
+					if($this->video_model->updateVideo($id, $title, $des, $time, $comment, $type, $link, $thumb))
 					{
 						$new_thumb_name = strval($id)."_".strval($thumb).$file_ext;
 						$old_path = $config['upload_path'].$thumb.$file_ext;
