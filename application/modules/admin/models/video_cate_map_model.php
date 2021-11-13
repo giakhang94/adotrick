@@ -41,6 +41,7 @@ class Video_cate_map_model extends CI_Model {
 	}
 	public function insertmap($cate_id, $video_id)
 	 {
+	 	$this->load->helper('url');
 	 	$dem  = 0;
 	 	foreach ($cate_id as $key => $value) {
 	 		$object = array ('category_id'=>$value, 'video_id'=>$video_id);
@@ -48,18 +49,21 @@ class Video_cate_map_model extends CI_Model {
 	 		$dem = $dem + 1;
 	 	}
 	 	if($dem == count($cate_id)){
-	 		echo "báo từ model: Thêm thành công";
+	 		header("location: ".base_url()."videos/listVideo");
 	 		return 1;
 	 	} else {echo "insert map k thanh cong";	}
 	 } 
 	public function delMap($del, $id)
 	{
+		$this->load->helper('url');
 		$this->db->select('*');
 		$this->db->where_in('video_category_map.category_id', $del);
 		$this->db->where('video_category_map.video_id', $id);
 		$res = $this->db->delete('video_category_map');
 		if($res){
 			echo "del category map thành công từ model";
+	 		header("location: ".base_url()."videos/listVideo");
+
 		}
 		else {echo "del đéll thành cồng từ modal rồi mày ạ (del cate map)";}
 	}
